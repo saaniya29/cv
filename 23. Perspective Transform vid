@@ -1,0 +1,16 @@
+import cv2
+import numpy as np
+cap = cv2.VideoCapture(r"C:\Users\Saaniya\Pictures\Screenshots\video.mp4")
+p1 = np.float32([[200, 300], [400, 300], [200, 500], [400, 500]])
+p2 = np.float32([[0, 0], [600, 0], [0, 600], [600, 600]])
+matrix = cv2.getPerspectiveTransform(p1, p2)
+while True:
+    ret, frame = cap.read()
+    if not ret: break
+    result = cv2.warpPerspective(frame, matrix, (600, 600))
+    cv2.imshow('Original Frame', frame)
+    cv2.imshow('Transformed Frame', result)
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+cap.release()
+cv2.destroyAllWindows()
