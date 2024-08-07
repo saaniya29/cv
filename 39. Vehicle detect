@@ -1,0 +1,22 @@
+import cv2
+import matplotlib.pyplot as plt
+path = r"C:\Users\Saaniya\Pictures\Screenshots\cars.xml"
+car_cascade = cv2.CascadeClassifier(path)
+cap = cv2.VideoCapture(r"C:\Users\Saaniya\Pictures\Screenshots\video.mp4")
+if not cap.isOpened():
+    print("Error: Could not open video.")
+    exit()
+while cap.isOpened():
+    ret, frame = cap.read()
+    if not ret:
+        break
+    gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+    cars = car_cascade.detectMultiScale(gray, 1.1, 1)
+    for (x, y, w, h) in cars:
+        cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
+    frame_rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+    plt.imshow(frame_rgb)
+    plt.title('Vehicle Detection')
+    plt.pause(0.001)
+cap.release()
+plt.close()
