@@ -1,0 +1,10 @@
+import cv2
+import numpy as np
+source = cv2.imread(r"C:\Users\Saaniya\Pictures\Screenshots\watch.jpg")
+a = np.array([[100, 200], [300, 400], [500, 400],[300, 200]])
+dest = cv2.imread(r"C:\Users\Saaniya\Pictures\Screenshots\watch.jpg")
+b = np.array([[150, 250], [310, 450], [550, 450],[350, 250]])
+h, status = cv2.findHomography(a, b)
+output = cv2.warpPerspective(source, h, (dest.shape[1],dest.shape[0]))
+cv2.imshow("Wrapped Source Image", output)
+cv2.waitKey(0)
