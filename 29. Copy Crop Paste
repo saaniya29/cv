@@ -1,0 +1,16 @@
+import cv2
+source_img = cv2.imread(r"C:\Users\Saaniya\Pictures\Screenshots\a.png")
+destination_img = cv2.imread(r"C:\Users\Saaniya\Pictures\Screenshots\b.png")
+x, y, w, h = 50, 50, 200, 200
+cropped_img = source_img[y:y+h, x:x+w]
+paste_x, paste_y = 100, 100
+end_x = paste_x + cropped_img.shape[1]
+end_y = paste_y + cropped_img.shape[0]
+if end_x <= destination_img.shape[1] and end_y <= destination_img.shape[0]:
+    destination_img[paste_y:paste_y + cropped_img.shape[0], paste_x:paste_x + cropped_img.shape[1]] = cropped_img
+    cv2.imshow(destination_img)
+    cv2.waitKey(0)
+    cv2.destroyAllWindows()
+else:
+    print("The cropped image does not fit within the destination image at the specified position.")
+
