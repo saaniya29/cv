@@ -1,0 +1,18 @@
+import cv2
+cap = cv2.VideoCapture(0)
+def display_video(v):
+    while True:
+        ret, frame = cap.read()
+        if not ret:
+            print("Error: Could not read frame.")
+            break
+        cv2.imshow('Webcam Video', frame)
+        key = cv2.waitKey(int(30 * v)) & 0xFF
+        if key == ord('q'): break
+        elif key == ord('n'):  v = 1
+        elif key == ord('s'):  v = 4
+        elif key == ord('f'):  v = 0.2
+print("Press 'n' for normal speed, 's' for slow motion, 'f' for fast motion, 'q' to quit.")
+display_video(1)
+cap.release()
+cv2.destroyAllWindows()
