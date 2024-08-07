@@ -1,0 +1,29 @@
+import cv2
+def display_video(path, motion_factor):
+    cap = cv2.VideoCapture(path)
+    if not cap.isOpened():
+        print("Error opening video file")
+        return
+    fps = cap.get(cv2.CAP_PROP_FPS)
+    print(f"Original FPS: {fps}")
+    delay = int(1000 / (fps * motion_factor))
+    while cap.isOpened():
+        ret, frame = cap.read()
+        if not ret: break
+        cv2.imshow('Video Playback', frame)
+        if cv2.waitKey(delay) & 0xFF == ord('q'): break
+    cap.release()
+    cv2.destroyAllWindows()
+    
+if __name__ == "__main__":
+    path = r"C:\Users\Saaniya\Pictures\Screenshots\video.mp4"
+    print("Choose 1. Slow motion or 2. Fast motion")
+    choice = input("Enter 1 or 2: ")
+    if choice == '1':
+        s = 0.25
+        display_video(path, s)
+    elif choice == '2':
+        f = 4.0
+        display_video(path, f)
+    else:
+        print("Invalid choice. Please enter 1 or 2.")
