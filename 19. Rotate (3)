@@ -1,0 +1,6 @@
+import cv2
+path = r"C:\Users\Saaniya\Pictures\Screenshots\watch.jpg"
+img = cv2.imread(path)
+rotate = cv2.rotate(img, cv2.ROTATE_90_COUNTERCLOCKWISE)
+cv2.imshow('Image', rotate)
+cv2.waitKey(0)
