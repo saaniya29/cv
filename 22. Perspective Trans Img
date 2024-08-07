@@ -1,0 +1,12 @@
+import cv2
+import numpy as np
+path = r"C:\Users\Saaniya\Pictures\Screenshots\watch.jpg"
+img = cv2.imread(path)
+rows, cols, ch = img.shape
+pts1 = np.float32([[50, 90], [30, 50], [60, 80], [50, 40]])
+pts2 = np.float32([[60, 60], [220, 50], [50, 220], [220, 220]])
+matrix = cv2.getPerspectiveTransform(pts1, pts2)
+dst = cv2.warpPerspective(img, matrix, (cols, rows))
+cv2.imshow('Transformed Image', dst)
+cv2.waitKey(0)
+cv2.destroyAllWindows()
