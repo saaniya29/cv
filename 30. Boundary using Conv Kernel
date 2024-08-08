@@ -4,8 +4,7 @@ img = cv2.imread(r"C:\Users\Saaniya\Pictures\Screenshots\.1) watch.jpg", cv2.IMR
 dx = cv2.Sobel(img, cv2.CV_64F, 1, 0)
 dy = cv2.Sobel(img, cv2.CV_64F, 0, 1)
 boundary = cv2.magnitude(dx, dy)
-thresh = 100
-_, edges = cv2.threshold(boundary, thresh, 255, cv2.THRESH_BINARY)
+_, edges = cv2.threshold(boundary,100, 255, cv2.THRESH_BINARY)
 cv2.imshow("BOUNDARY", edges)
 cv2.waitKey(0)
 cv2.destroyAllWindows()
